@@ -8,12 +8,14 @@ public class Menu {
     private ArrayList<MenuItem> menuitems;
     public static String nl = System.lineSeparator();
     
-    public Menu() {
-        // stub
-    }
+    public Menu()
+    {
+        // Eppty array list:
+        this.menuitems = new ArrayList<> ();    }
 
-    public void add(MenuItem mi) {
-        // stub
+    public void add(MenuItem mi) 
+    {
+        menuitems.add(mi);
     }
 
     /**
@@ -21,8 +23,17 @@ public class Menu {
      * @param name MenuItem being looked up
      * @return reference to MenuItem or null if not found
      */
-    public MenuItem lookup(String name) {
-        return null; // stub
+    public MenuItem lookup(String name)
+    {
+        for(int i = 0; i < menuitems.size(); i++)
+        {
+            if(name == menuitems.get(i).getName())
+            {
+                return menuitems.get(i);
+            }
+        }
+
+        return null;
     }
 
     /**
@@ -33,16 +44,53 @@ public class Menu {
      */
     public String csv() {
         String result = "";
-        // stub
+        for(int i = 0; i < menuitems.size(); i++)
+        {
+            result += menuitems.get(i).getName() + "," + menuitems.get(i).getPriceInCents() + "," + menuitems.get(i).getCategory() + nl;
+        }
         return result;
     }
 
-    public void sortByName() {
-        // stub
+    public void sortByName() 
+    {
+        // Calling the "Collisions" built-in sort function that compares by name by default:
+        java.util.Collections.sort(menuitems);
     }
 
-    public void sortByCategoryThenName() {
-        // stub
+    // "Comparator" function to compare by category and then name:
+    Comparator<MenuItem> byCategoryThenName = new Comparator<MenuItem> () 
+    {
+        public int compare(MenuItem m1, MenuItem m2) 
+        {
+            if (m1.getCategory().equals(m2.getCategory())) 
+            {
+			return m1.getName().compareTo(m2.getName());
+            }
+            else 
+            {
+			return m1.getCategory().toUpperCase().compareTo(m2.getCategory().toUpperCase());
+		    }
+		}
+    };
+    
+    Comparator<MenuItem> byCategoryThenPriceDescendingThenByName = new Comparator<MenuItem> () 
+    {
+        public int compare(MenuItem m1, MenuItem m2) 
+        {
+            if (m1.getCategory().equals(m2.getCategory())) 
+            {
+			    return m1.getName().compareTo(m2.getName());
+            }
+            else 
+            {
+			return m1.getCategory().toUpperCase().compareTo(m2.getCategory().toUpperCase());
+		    }
+		}
+	};
+
+    public void sortByCategoryThenName()
+    {
+        menuitems.sort(byCategoryThenName);
     }
 
     /** 
@@ -52,7 +100,8 @@ public class Menu {
      * Break ties of items within a category that have the same price
      * by putting them in lexicographic order.
      */
-    public void sortByCategoryThenPriceDescendingThenByName() {
+    public void sortByCategoryThenPriceDescendingThenByName()
+    {
         // stub
     }
 }

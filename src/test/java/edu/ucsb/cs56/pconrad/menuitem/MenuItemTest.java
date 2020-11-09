@@ -9,10 +9,12 @@ import org.junit.Before;
 public class MenuItemTest {
 
     private MenuItem smallPokeBowl;
+    private MenuItem smallPokeBowl2;
 
     @Before
     public void setUp() {
         smallPokeBowl = new MenuItem("Small Poke Bowl", 1049, "Poke Bowls");
+	smallPokeBowl2 = new MenuItem("Small Poke Bowl", 9, "Poke Bowls");
     }
 
     @Test
@@ -40,6 +42,12 @@ public class MenuItemTest {
         smallPokeBowl.getPrice(5);
     }
 
+     @Test
+    public void test_getPrice_8() {
+        assertEquals("$0.09", smallPokeBowl2.getPrice());
+    }
+
+
     @Test(expected = MenuItem.TooNarrowException.class)
     public void test_getPrice_0() {
         smallPokeBowl.getPrice(0);
@@ -49,5 +57,22 @@ public class MenuItemTest {
     public void test_toString() {
         assertEquals("Small Poke Bowl,1049,Poke Bowls", smallPokeBowl.toString());
     }
+
+    @Test
+    public void test_getCategory() {
+        assertEquals ("Poke Bowls", smallPokeBowl.getCategory());
+    }
+
+    @Test
+    public void test_getName() {
+        assertEquals ("Small Poke Bowl", smallPokeBowl.getName());
+    }
+
+    @Test
+    public void test_getPriceInCents() {
+	    
+        assertEquals (1049, smallPokeBowl.getPriceInCents());
+    }
+
 
 }
