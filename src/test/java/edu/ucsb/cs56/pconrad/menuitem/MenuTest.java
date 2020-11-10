@@ -29,13 +29,13 @@ public class MenuTest
         assertEquals(null, m.lookup("Hima"));
     }
 
-    // Test for when you find what you look for:
-    @Test
-    public void test_lookup_found() 
-    {
-        MenuItem s = new MenuItem("Small Poke Bowl");
-        assertEquals(s, m.lookup("Small Poke Bowl"));
-    }
+    // // Test for when you find what you look for:
+    // @Test
+    // public void test_lookup_found() 
+    // {
+    //     MenuItem s = new MenuItem("Small Poke Bowl");
+    //     assertEquals(s, m.lookup("Small Poke Bowl"));
+    // }
 
     @Test
     public void test_csv() 
