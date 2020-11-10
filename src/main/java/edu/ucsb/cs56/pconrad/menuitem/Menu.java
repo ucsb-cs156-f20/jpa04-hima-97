@@ -72,21 +72,6 @@ public class Menu {
 		    }
 		}
     };
-    
-    Comparator<MenuItem> byCategoryThenPriceDescendingThenByName = new Comparator<MenuItem> () 
-    {
-        public int compare(MenuItem m1, MenuItem m2) 
-        {
-            if (m1.getCategory().equals(m2.getCategory())) 
-            {
-			    return m1.getName().compareTo(m2.getName());
-            }
-            else 
-            {
-			return m1.getCategory().toUpperCase().compareTo(m2.getCategory().toUpperCase());
-		    }
-		}
-	};
 
     public void sortByCategoryThenName()
     {
@@ -100,8 +85,38 @@ public class Menu {
      * Break ties of items within a category that have the same price
      * by putting them in lexicographic order.
      */
+
+    Comparator<MenuItem> byCategoryThenPriceDescendingThenByName = new Comparator<MenuItem> () 
+    {
+        public int compare(MenuItem s1, MenuItem s2) 
+        {
+            if (s1.getCategory().equals(s2.getCategory())) 
+            {
+                if((s1.getPriceInCents()) == (s2.getPriceInCents())) 
+                {
+                    return s1.getName().compareTo(s2.getName());
+                }
+                else 
+                {
+                    if(s1.getPriceInCents() > s2.getPriceInCents()) 
+                    {
+                        return -1;
+                    } else 
+                    {
+                        return 1;
+                    }  
+                }
+            }
+            else 
+            {
+			    return s1.getCategory().toUpperCase().compareTo(s2.getCategory().toUpperCase());
+		    }
+		}
+    };
+
+    
     public void sortByCategoryThenPriceDescendingThenByName()
     {
-        // stub
+        menuitems.sort(byCategoryThenPriceDescendingThenByName);
     }
 }

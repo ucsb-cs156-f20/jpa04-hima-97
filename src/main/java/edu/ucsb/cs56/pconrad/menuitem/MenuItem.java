@@ -101,18 +101,7 @@ public class MenuItem implements Comparable <MenuItem>
     // Function for Comparable to sort by name (compareTo does not work for integers):
     public int compareTo(MenuItem otherItem)
     {
-        if (this.name.compareTo(otherItem.getName()) < 0) 
-        {
-            return -1;
-        }
-        else if (this.name.equals(otherItem.getName())) 
-        {
-            return 0; 
-        }
-        else 
-        {
-            return 1;
-        } 
+        return this.name.compareTo(otherItem.getName());
     }
 
 
